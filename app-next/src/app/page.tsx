@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useState, useCallback, useRef } from "react";
 import Image from "next/image";
 import { SiteHeader } from "../components/site-header";
