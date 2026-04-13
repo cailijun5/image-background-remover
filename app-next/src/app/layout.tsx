@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { BuildRecovery } from "../components/build-recovery";
 
 export const metadata: Metadata = {
   title: "背景去除 - 一键去除图片背景",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <BuildRecovery />
+        {children}
+      </body>
     </html>
   );
 }
