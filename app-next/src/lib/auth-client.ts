@@ -1,0 +1,29 @@
+"use client";
+
+const TOKEN_KEY = "auth_token";
+
+export function getAuthToken() {
+  if (typeof window === "undefined") return null;
+  return window.localStorage.getItem(TOKEN_KEY);
+}
+
+export function setAuthToken(token: string) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(TOKEN_KEY, token);
+}
+
+export function clearAuthToken() {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(TOKEN_KEY);
+}
+
+export function consumeTokenFromUrl() {
+  if (typeof window === "undefined") return null;
+  const url = new URL(window.location.href);
+  const token = url.searchParams.get("token");
+  if (!token) return null;
+  setAuthToken(token);
+  url.searchParams.delete("token");
+  window.history.replaceState({}, "", url.toString());
+  return token;
+}
